@@ -18,7 +18,9 @@ function doNewBlogFormSubmit(evt: any) {
         });
 
         // Complete the FORM_SUBMIT transition with its ending transition
-
+        transition({
+            type: "FORM_AFTER_SUBMIT",
+        });
     }
 };
 
