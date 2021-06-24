@@ -10,6 +10,7 @@ import Details from './pages/Details';
 import NewBlog from "./pages/NewBlog";
 import { useEffect } from "react";
 
+// Application action definitions
 const Actions = {
     State: {
         NAVIGATE_URL: "NAVIGATE_URL",
@@ -20,6 +21,7 @@ const Actions = {
     INIT: "Actions.INIT"
 };
 
+// application state
 const initialState = {
     history: null
 };
@@ -37,6 +39,9 @@ function reducer(state, action) {
     }
 }
 
+/**
+ * Action triggered once when the application is initialized
+ */
 function doInit(event) {
     return (getState, dispatch, transition) => {
         dispatch({
@@ -49,6 +54,11 @@ function doInit(event) {
     };
 }
 
+/**
+ * Transition pattern for navigating to another URL. It uses history object to push the URL.
+ * @param event - contains the URL to navivate
+ * @returns void
+ */
 function doNavigateUrl(event) {
     return (getState, dispatch, transition) => {
         const { history } = getState();
@@ -59,6 +69,10 @@ function doNavigateUrl(event) {
     };
 }
 
+/**
+ * StateJSON for application instance. Typically, application transitions are appicable for all pages,
+ * For instance, navigating to another page, or showing a progress notification.
+ */
 const stateJSON = {
     "initial": "onLoaded",
     "states": {
@@ -87,6 +101,11 @@ const stateJSON = {
     },
 };
 
+/**
+ * Define the dispatcher to props, and these functions are available with useTransition hook.
+ * @param dispatch - Dispatcher for actions
+ * @returns Dispatcher object that is used by ItsyUI widget
+ */
 const mapDispatchToProps = (dispatch) => {
     return {
         onNavigateUrl: (event) => dispatch(doNavigateUrl(event)),

@@ -1,6 +1,7 @@
 import { StateManagerContext } from "@itsy-ui/core";
 import { ItsyForm } from '@itsy-ui/form';
 import { ItsyRow, ItsyColumn } from "@itsy-ui/layout";
+// import the custom override handler so the code is registered
 import "../handlers/newBlogFormHandler";
 
 const formSchema = {
@@ -49,8 +50,9 @@ const schema = {
     controlID: "new_blog"
 }
 
+// Define ItsyForm widget with StateManagerContext.Provider to set the contextPath
+// Its important to define the contextPath as its used for widget overrides.
 const AddTravel = () => {
-
     return <StateManagerContext.Provider key="new_blog" value={{ contextPath: { "id": "new_blog" } }}>
         <ItsyRow className="form-page-travel">
             <ItsyColumn>

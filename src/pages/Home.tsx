@@ -2,6 +2,7 @@ import { StateManagerContext } from "@itsy-ui/core";
 import { ItsyGrid } from '@itsy-ui/data';
 import { ItsyToolbar } from '@itsy-ui/navigation';
 import { ItsyRow, ItsyColumn } from "@itsy-ui/layout";
+// import the custom override handler so the code is registered
 import "../handlers/navigationHandler";
 
 const gridSchema = {
@@ -61,6 +62,8 @@ const toolbarSchema = {
     align: "right"
 };
 
+// Define ItsyGrid widget with StateManagerContext.Provider to set the contextPath
+// Its important to define the contextPath as its used for widget overrides
 const Home: React.FC = () => {
     return (
         <StateManagerContext.Provider key="grid-context" value={{ contextPath: { "id": "travel_blogs" } }}>
